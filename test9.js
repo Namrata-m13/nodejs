@@ -1,33 +1,28 @@
-var webdriver = require('selenium-webdriver'),
-By = webdriver.By;
-var assert=require('assert');
-//var event = document.createEvent("MouseEvents");
+describe("This test is to check clicks",function(){
 
-var capabilities = {
- 'browserName' : 'firefox'
-}
-
-var driver = new webdriver.Builder().usingServer('http://localhost:4444/wd/hub').withCapabilities(capabilities).build();
-
-driver.get('https://the-internet.herokuapp.com/context_menu');
-
-// Right-click in the square box
-var element1=driver.findElement(By.id("hot-spot"));
-//driver.actions().click(element1,webdriver.Button.right).perform();
-driver.actions().click(webdriver.Button.RIGHT).perform().then(function (){
-   window.oncontextmenu=function(){
-       return true;
-   }
+    it("should check for Action Unsuccessful",function(){
+        browser.ignoreSynchronization = true;
+        browser.get("http://the-internet.herokuapp.com/notification_message_rendered");
+        startagain();
+        function startagain()
+        {
+        element(by.partialLinkText('Click')).click();
+        element(by.id("flash")).getText().then(function(ans){
+            if(ans.includes("Action successful"))
+            {
+                console.log("Successful");
+                startagain();
+            }
+            else {
+            console.log("Action is unsuccessful");
+            }
+    
+            });
+   
+        }   
+    
+    });
+    
+    
 });
-
-driver.actions().mouseMove(element1).click(webdriver.Button.right).perform()
-
-// Select the context menu option 'the-internet' with keyboard keys
-
-// Verify if JavaScript alert appears
-
-// Grab the text from the JavaScript alert
-
-// Assert that the text from the alert is 'You selected a context menu'"
-
-driver.quit();
+    
