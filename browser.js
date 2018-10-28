@@ -1,7 +1,7 @@
 var https = require('https')
 
-var username = 'namratamotwani2'
-var passw = 'xLLUSrJZHrc79wVUQVas'
+var username = 'BROWSERSTACK_USERNAME'
+var passw = 'BROWSERSTACK_ACCESS_KEY'
 
 var options = {
 host: 'api.browserstack.com',
